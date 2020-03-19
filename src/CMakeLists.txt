@@ -1,0 +1,10 @@
+project(Connect4_Lib)
+
+# All sources that also need to be tested in unit tests go into a static library
+add_library(connect4_lib STATIC board.cpp board.h)
+
+target_include_directories(connect4_lib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+
+# The main program
+add_executable(prog main.cpp)
+target_link_libraries(prog PRIVATE connect4_lib)
