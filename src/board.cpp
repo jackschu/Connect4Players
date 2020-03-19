@@ -35,9 +35,11 @@ bool Board::makeMove(int column, Tile player) {
 
   if (nextEmpty[column] >= BOARD_HEIGHT) {
     std::cerr << "[Error] column " << column << " is full" << std::endl;
-	return false;
+    return false;
   }
 
-  board[BOARD_HEIGHT*nextEmpty[column] + column] = player;
+  board[BOARD_HEIGHT * nextEmpty[column] + column] = player;
+  nextEmpty[column]++;
+
   return true;
 }
