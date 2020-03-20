@@ -20,8 +20,8 @@ private:
   Tile board[BOARD_HEIGHT * BOARD_WIDTH] = {Tile::EMPTY};
   int nextEmpty[BOARD_WIDTH] = {};
   std::bitset<BOARD_HEIGHT * BOARD_WIDTH> toBitset(Tile match);
-  inline static std::vector<std::bitset<BOARD_HEIGHT *BOARD_WIDTH>> winlist =
-      {};
-
-  void initializeWinlist();
+  static std::vector<std::bitset<BOARD_HEIGHT * BOARD_WIDTH>> initializeWinlist();
+  static std::vector<std::bitset<BOARD_HEIGHT * BOARD_WIDTH>> getWinlist();
 };
+
+

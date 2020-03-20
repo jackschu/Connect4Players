@@ -1,10 +1,6 @@
 #include "board.h"
 
-Board::Board() {
-  if (this->winlist.size() == 0) {
-	this->initializeWinlist();
-  }
-}
+Board::Board() {}
 
 void Board::print() {
   for (int i = this->BOARD_HEIGHT - 1; i >= 0; i--) {
@@ -28,9 +24,9 @@ void Board::print() {
 
 bool Board::checkWin(Tile player) {
   auto status = this->toBitset(player);
-  for(const auto& win_cond : this->winlist)
-	if((status & win_cond).count() == WIN_LEN)
-	  return true;
+  for (const auto &win_cond : this->getWinlist())
+    if ((status & win_cond).count() == WIN_LEN)
+      return true;
   return false;
 }
 
@@ -64,9 +60,12 @@ Board::toBitset(Tile match) {
   return out;
 }
 
-void Board::initializeWinlist() {
-  for (int i = 0; i < this->BOARD_HEIGHT; i++) {
-    for (int j = 0; j < this->BOARD_WIDTH; j++) {
+std::vector<std::bitset<Board::BOARD_HEIGHT * Board::BOARD_WIDTH>>
+Board::initializeWinlist() {
+  std::vector<std::bitset<BOARD_HEIGHT *BOARD_WIDTH>> out = {};
+
+  for (int i = 0; i < Board::BOARD_HEIGHT; i++) {
+    for (int j = 0; j < Board::BOARD_WIDTH; j++) {
       std::bitset<BOARD_HEIGHT *BOARD_WIDTH> current = {};
       // horiz
       for (int k = 0; k < WIN_LEN; k++) {
@@ -76,7 +75,7 @@ void Board::initializeWinlist() {
           break;
         current.set(y * BOARD_WIDTH + x);
         if (k == WIN_LEN - 1)
-          winlist.push_back(current);
+          out.push_back(current);
       }
 
       // vert
@@ -89,7 +88,7 @@ void Board::initializeWinlist() {
         current.set(y * BOARD_WIDTH + x);
 
         if (k == WIN_LEN - 1)
-          winlist.push_back(current);
+          out.push_back(current);
       }
 
       // diag up right
@@ -101,7 +100,7 @@ void Board::initializeWinlist() {
           break;
         current.set(y * BOARD_WIDTH + x);
         if (k == WIN_LEN - 1)
-          winlist.push_back(current);
+          out.push_back(current);
       }
 
       // diag up left
@@ -113,8 +112,15 @@ void Board::initializeWinlist() {
           break;
         current.set(y * BOARD_WIDTH + x);
         if (k == WIN_LEN - 1)
-          winlist.push_back(current);
+          out.push_back(current);
       }
     }
   }
+  return out;
+}
+
+std::vector<std::bitset<Board::BOARD_HEIGHT * Board::BOARD_WIDTH>>
+Board::getWinlist() {
+  static auto out = Board::initializeWinlist();
+  return out;
 }
