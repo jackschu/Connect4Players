@@ -2,7 +2,7 @@
 
 Board::Board() {}
 
-void Board::print() {
+void Board::print() const {
   for (int i = this->BOARD_HEIGHT - 1; i >= 0; i--) {
     printf("%d: ", i);
     for (int j = 0; j < this->BOARD_WIDTH; j++) {
@@ -22,7 +22,12 @@ void Board::print() {
   }
 }
 
-bool Board::checkWin(Tile player) {
+bool Board::checkTie() const {
+  auto status = this->toBitset(Tile::BLACK) | this->toBitset(Tile::WHITE);
+  return status.all();
+}
+
+bool Board::checkWin(Tile player) const {
   auto status = this->toBitset(player);
   for (const auto &win_cond : this->getWinlist())
     if ((status & win_cond).count() == WIN_LEN)
@@ -68,7 +73,7 @@ bool Board::makeMove(int column, Tile player) {
 }
 
 std::bitset<Board::BOARD_HEIGHT * Board::BOARD_WIDTH>
-Board::toBitset(Tile match) {
+Board::toBitset(Tile match) const {
   std::bitset<BOARD_HEIGHT * BOARD_WIDTH> out;
   for (int i = 0; i < BOARD_HEIGHT * BOARD_WIDTH; i++)
     out[i] = this->board[i] == match;

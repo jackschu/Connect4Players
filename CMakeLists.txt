@@ -8,4 +8,5 @@ project(Connect4 VERSION 0.1
 
 add_subdirectory(thirdparty/catch2)
 add_subdirectory(src)
+add_subdirectory(apps)
 add_subdirectory(test)
