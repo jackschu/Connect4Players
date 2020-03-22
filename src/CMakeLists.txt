@@ -9,3 +9,4 @@ target_include_directories(connect4_lib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 # The main program
 add_executable(prog main.cpp)
 target_link_libraries(prog PRIVATE connect4_lib)
+
