@@ -1,13 +1,13 @@
 #include "board.h"
 #include "tile.h"
+#include <cstdlib>
 #include <iostream>
+
 int handleGameOver(const Board &b);
 int main() {
   Board b;
-  bool black_move = true;
   int col = 7;
   while (handleGameOver(b) < 0) {
-
     b.print();
     do {
       printf("Enter col 0-%d: ", b.BOARD_WIDTH);
@@ -15,22 +15,24 @@ int main() {
 
     } while (!b.makeMove(col, Tile::BLACK));
 
-	
-
-    black_move != black_move;
+    while (!b.makeMove(std::rand() % b.BOARD_WIDTH, Tile::WHITE)) {
+    }
   }
 }
 
 int handleGameOver(const Board &b) {
+  int out = -1;
   if (b.checkTie()) {
     printf("Tie game!\n");
-    return 0;
+    out = 0;
   } else if (b.checkWin(Tile::WHITE)) {
     printf("White wins!\n");
-    return 2;
+    out = 2;
   } else if (b.checkWin(Tile::BLACK)) {
     printf("Black wins!\n");
-    return 1;
+    out = 1;
   }
-  return -1;
+  if (out != -1)
+    b.print();
+  return out;
 }
