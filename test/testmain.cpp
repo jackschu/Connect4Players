@@ -18,8 +18,12 @@ TEST_CASE("diagonal win", "[win check]"){
   b.makeMove(6, Tile::WHITE);
   
   b.makeMove(6, Tile::BLACK);
-  b.print();
   REQUIRE(b.checkWin(Tile::WHITE) == false);
   REQUIRE(b.checkWin(Tile::BLACK) == true);
   
+  b.unmakeMove(6);
+  REQUIRE(b.checkWin(Tile::BLACK) == false);
+
+  b.makeMove(6, Tile::BLACK);
+  REQUIRE(b.checkWin(Tile::BLACK) == true);
 }

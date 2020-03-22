@@ -30,6 +30,21 @@ bool Board::checkWin(Tile player) {
   return false;
 }
 
+bool Board::unmakeMove(int column) {
+  if (column < 0 || column >= BOARD_WIDTH) {
+    std::cerr << "[Error] column " << column << " is out of range" << std::endl;
+    return false;
+  }
+
+  if (nextEmpty[column] == 0) {
+    std::cerr << "[Error] column " << column << " is empty" << std::endl;
+    return false;
+  }
+  nextEmpty[column]--;
+  board[BOARD_WIDTH * nextEmpty[column] + column] = Tile::EMPTY;
+  return true;
+}
+
 bool Board::makeMove(int column, Tile player) {
   if (player == Tile::EMPTY) {
     std::cerr << "[Error] player is empty" << std::endl;

@@ -15,6 +15,7 @@ public:
   bool checkWin(Tile player);
   // return if succeed, col is 0 indexed
   bool makeMove(int column, Tile player);
+  bool unmakeMove(int column);
 
 private:
   Tile board[BOARD_HEIGHT * BOARD_WIDTH] = {Tile::EMPTY};
