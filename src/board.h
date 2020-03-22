@@ -21,7 +21,7 @@ private:
   int nextEmpty[BOARD_WIDTH] = {};
   std::bitset<BOARD_HEIGHT * BOARD_WIDTH> toBitset(Tile match);
   static std::vector<std::bitset<BOARD_HEIGHT * BOARD_WIDTH>> initializeWinlist();
-  static std::vector<std::bitset<BOARD_HEIGHT * BOARD_WIDTH>> getWinlist();
+  const static std::vector<std::bitset<BOARD_HEIGHT * BOARD_WIDTH>>& getWinlist();
 };
 
 

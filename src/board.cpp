@@ -119,7 +119,7 @@ Board::initializeWinlist() {
   return out;
 }
 
-std::vector<std::bitset<Board::BOARD_HEIGHT * Board::BOARD_WIDTH>>
+const std::vector<std::bitset<Board::BOARD_HEIGHT * Board::BOARD_WIDTH>> &
 Board::getWinlist() {
   static auto out = Board::initializeWinlist();
   return out;
