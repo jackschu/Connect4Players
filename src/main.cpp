@@ -1,5 +1,6 @@
 #include "board.h"
 #include "tile.h"
+#include "minimaxNode.h"
 #include <iostream>
 int main() {
   Board b = Board();
@@ -11,4 +12,5 @@ int main() {
   b.makeMove(3, Tile::WHITE);
   b.print();
   std::cout << b.checkWin(Tile::WHITE) << std::endl;
+  std::cout <<b.countConsecutive(Tile::WHITE) <<std::endl;
 }

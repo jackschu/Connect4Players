@@ -5,3 +5,4 @@ enum class Tile {
   BLACK,
   WHITE
 };
+
