@@ -1,10 +1,10 @@
 #pragma once
 #include "tile.h"
+#include <algorithm>
 #include <bitset>
 #include <iostream>
-#include <vector>
 #include <unordered_set>
-#include <algorithm>
+#include <vector>
 
 class Board {
 public:
@@ -28,12 +28,11 @@ private:
   std::bitset<BOARD_HEIGHT * BOARD_WIDTH> toBitset(Tile match) const;
 
   static std::vector<std::bitset<BOARD_HEIGHT * BOARD_WIDTH>>
-  initializeWinlist(bool consecutive_counter=false);
+  initializeWinlist(bool consecutive_counter = false);
 
   const static std::vector<std::bitset<BOARD_HEIGHT * BOARD_WIDTH>> &
   getWinlist();
 
-  static std::vector<std::vector<int>>
-  initializeConsecutiveList();
-  const static std::vector<std::vector<int>> & getConsecutiveList();  
+  static std::vector<std::vector<int>> initializeConsecutiveList();
+  const static std::vector<std::vector<int>> &getConsecutiveList();
 };
