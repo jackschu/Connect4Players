@@ -1,4 +1,5 @@
 #include "board.h"
+#include "minimaxNode.h"
 #include "tile.h"
 #include <cstdlib>
 #include <iostream>
@@ -12,10 +13,14 @@ int main() {
     do {
       printf("Enter col 0-%d: ", b.BOARD_WIDTH);
       std::cin >> col;
-
     } while (!b.makeMove(col, Tile::BLACK));
 
-    while (!b.makeMove(std::rand() % b.BOARD_WIDTH, Tile::WHITE)) {
+	MinimaxNode node(true, b, Tile::WHITE);
+	node.root_player = Tile::WHITE;
+	node.traverse();
+
+    if(!b.makeMove(node.getBestMove(), Tile::WHITE)){
+	  printf("bad move white\n");
     }
   }
 }

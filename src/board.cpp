@@ -85,19 +85,19 @@ bool Board::unmakeMove(int column) {
   return true;
 }
 
-bool Board::makeMove(int column, Tile player) {
+bool Board::makeMove(int column, Tile player, bool quiet) {
   if (player == Tile::EMPTY) {
-    std::cerr << "[Error] player is empty" << std::endl;
+    if(!quiet)std::cerr << "[Error] player is empty" << std::endl;
     return false;
   }
 
   if (column < 0 || column >= BOARD_WIDTH) {
-    std::cerr << "[Error] column " << column << " is out of range" << std::endl;
+    if(!quiet)std::cerr << "[Error] column " << column << " is out of range" << std::endl;
     return false;
   }
 
   if (nextEmpty[column] >= BOARD_HEIGHT) {
-    std::cerr << "[Error] column " << column << " is full" << std::endl;
+	if(!quiet)std::cerr << "[Error] column " << column << " is full" << std::endl;
     return false;
   }
 

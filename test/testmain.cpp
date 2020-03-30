@@ -1,10 +1,13 @@
 #define CATCH_CONFIG_MAIN
 #include "board.h"
+#include "minimaxNode.h"
 #include "catch.hpp"
 #include "tile.h"
 
 TEST_CASE("diagonal win", "[win check]") {
+
   Board b = Board();
+  MinimaxNode a(false, b, Tile::BLACK);
   b.makeMove(3, Tile::BLACK);
   b.makeMove(4, Tile::WHITE);
   b.makeMove(5, Tile::WHITE);
