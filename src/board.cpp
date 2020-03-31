@@ -85,7 +85,7 @@ bool Board::unmakeMove(int column) {
   return true;
 }
 
-bool Board::makeMove(int column, Tile player, bool quiet) {
+bool Board::isLegalMove(int column, Tile player, bool quiet) const{
   if (player == Tile::EMPTY) {
     if(!quiet)std::cerr << "[Error] player is empty" << std::endl;
     return false;
@@ -100,6 +100,12 @@ bool Board::makeMove(int column, Tile player, bool quiet) {
 	if(!quiet)std::cerr << "[Error] column " << column << " is full" << std::endl;
     return false;
   }
+  return true;
+}
+
+bool Board::makeMove(int column, Tile player, bool quiet) {
+  if(!this->isLegalMove(column,  player, quiet)) return false;
+
 
   board[BOARD_WIDTH * nextEmpty[column] + column] = player;
   nextEmpty[column]++;

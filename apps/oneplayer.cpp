@@ -1,5 +1,6 @@
 #include "board.h"
-#include "minimaxNode.h"
+#include "players/consecutivePlayer.h"
+#include "players/humanPlayer.h"
 #include "tile.h"
 #include <cstdlib>
 #include <iostream>
@@ -8,18 +9,21 @@ int handleGameOver(const Board &b);
 int main() {
   Board b;
   int col = 7;
+  Player * pw = new ConsecutivePlayer(Tile::WHITE);
+  Player * pb = new HumanPlayer(Tile::BLACK);
   while (handleGameOver(b) < 0) {
     b.print();
-    do {
-      printf("Enter col 0-%d: ", b.BOARD_WIDTH);
-      std::cin >> col;
-    } while (!b.makeMove(col, Tile::BLACK));
+	std::cout  << std::endl;
 
-	MinimaxNode node(true, b, Tile::WHITE);
-	node.root_player = Tile::WHITE;
-	node.traverse();
+	if(!b.makeMove(pb->getMove(b), Tile::BLACK))
+	  printf("bad move black\n");
 
-    if(!b.makeMove(node.getBestMove(), Tile::WHITE)){
+	if(handleGameOver(b) >= 0)
+	  break;
+	
+	b.print();
+	std::cout  << std::endl;
+    if(!b.makeMove(pw->getMove(b), Tile::WHITE)){
 	  printf("bad move white\n");
     }
   }

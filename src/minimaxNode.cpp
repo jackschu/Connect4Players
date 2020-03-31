@@ -1,6 +1,6 @@
 #include "minimaxNode.h"
 
-int MinimaxNode::max_depth = 7;
+int MinimaxNode::max_depth = 8;
 
 MinimaxNode::MinimaxNode(bool is_maximizer, Board &board, Tile player,
                          int depth, long alpha, long beta)

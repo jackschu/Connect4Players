@@ -18,6 +18,7 @@ public:
   bool checkWin(Tile player) const;
   int countConsecutive(Tile player) const;
   bool checkTie() const;
+  bool isLegalMove(int column, Tile player, bool quiet=false) const ;
   // return if succeed, col is 0 indexed
   bool makeMove(int column, Tile player, bool quiet=false);
   bool unmakeMove(int column);
