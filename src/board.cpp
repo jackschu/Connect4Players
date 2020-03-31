@@ -1,6 +1,28 @@
 #include "board.h"
 
 Board::Board() {}
+char ** Board::toChar() const {
+  char ** out = new char * [Board::BOARD_HEIGHT];
+  for (int i = 0; i < Board::BOARD_HEIGHT; i++) {
+	out[Board::BOARD_HEIGHT-1-i] = new char [Board::BOARD_WIDTH];
+    for (int j = 0; j < this->BOARD_WIDTH; j++) {
+	  char val;
+      switch (this->board[i * BOARD_WIDTH + j]) {
+      case Tile::BLACK:
+		val = 'X';
+        break;
+      case Tile::WHITE:
+        val = 'O';
+        break;
+      case Tile::EMPTY:
+        val = ' ';
+        break;
+      }
+	  out[Board::BOARD_HEIGHT-1-i][j] = val;
+    }
+  }
+  return out;
+}
 
 void Board::print() const {
   for (int i = this->BOARD_HEIGHT - 1; i >= 0; i--) {

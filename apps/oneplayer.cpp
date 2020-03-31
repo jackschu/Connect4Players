@@ -1,6 +1,7 @@
 #include "board.h"
 #include "players/consecutivePlayer.h"
 #include "players/humanPlayer.h"
+#include "players/petersPlayer.h"
 #include "tile.h"
 #include <cstdlib>
 #include <iostream>
@@ -8,9 +9,9 @@
 int handleGameOver(const Board &b);
 int main() {
   Board b;
-  int col = 7;
-  Player * pw = new ConsecutivePlayer(Tile::WHITE);
   Player * pb = new HumanPlayer(Tile::BLACK);
+  Player * pw = new PetersPlayer(Tile::WHITE);
+  //Player * pw = new ConsecutivePlayer(Tile::WHITE);
   while (handleGameOver(b) < 0) {
     b.print();
 	std::cout  << std::endl;
