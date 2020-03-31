@@ -192,8 +192,8 @@ Board::initializeWinlist(bool consecutive_counter) {
     std::unordered_set<std::bitset<BOARD_HEIGHT * BOARD_WIDTH>> s(out.begin(),
                                                                   out.end());
     out.assign(s.begin(), s.end());
-    for (int i = 0; i < out.size(); i++) {
-      for (int j = 0; j < out.size(); j++) {
+    for (int i = 0; i < (int)out.size(); i++) {
+      for (int j = 0; j < (int)out.size(); j++) {
         if (i == j)
           continue;
         // removes i if i is a subset of j
@@ -213,7 +213,8 @@ std::vector<std::vector<int>> Board::initializeConsecutiveList() {
   static std::vector<std::vector<int>> out;
   for (auto &elem : bitlist) {
     std::vector<int> out_part;
-    for (int i = 0; i < elem.size(); i++)
+	int n = elem.size();
+    for (int i = 0; i < n; i++)
       if (elem[i])
         out_part.push_back(i);
     out.push_back(out_part);
