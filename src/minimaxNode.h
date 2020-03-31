@@ -2,6 +2,7 @@
 #include "board.h"
 #include "tile.h"
 #include <climits>
+#include <time.h> 
 #include <algorithm>
 #include <numeric>
 #include <cstdlib>
@@ -17,7 +18,10 @@ public:
   long alpha;
   // min upper bound
   long beta;
+  // after this time, all traversals act as end-nodes
+  time_t soft_deadline;
 private:
+
   const static long INF = LONG_MAX;
   const static bool randomize_check_order = true;
   static Tile flipTile(Tile targ);

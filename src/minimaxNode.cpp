@@ -1,6 +1,6 @@
 #include "minimaxNode.h"
 
-int MinimaxNode::max_depth = 8;
+int MinimaxNode::max_depth = 13;
 
 MinimaxNode::MinimaxNode(bool is_maximizer, Board &board, Tile player,
                          int depth, long alpha, long beta)
@@ -21,9 +21,7 @@ long MinimaxNode::traverse() {
 	updateValue(0);
 	return this->value;
   }
-  
-  if (depth == max_depth) {
-
+  if (depth == max_depth||(depth > 5 && difftime(time(0), MinimaxNode::soft_deadline) > 0)) {
 	long opt = board.countConsecutive(root_player) - board.countConsecutive(MinimaxNode::flipTile(root_player));
 	updateValue(opt);
 	
@@ -44,6 +42,7 @@ long MinimaxNode::traverse() {
     if(!board.makeMove(move, player, true)) continue;
     MinimaxNode child(!is_maximizer, board, MinimaxNode::flipTile(player), depth + 1, alpha, beta);
 	child.root_player = this->root_player;
+	child.soft_deadline = this->soft_deadline;
 
 	//if(depth == 0) printf("exploring at depth: %d move %d preval %ld beta %ld  alpha %ld\n", depth, move, value, beta, alpha);
 	long opt = child.traverse();
