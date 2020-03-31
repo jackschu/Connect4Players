@@ -31,7 +31,7 @@ long MinimaxNode::traverse() {
   }
   std::vector<int> moves(Board::BOARD_WIDTH);
   std::iota(moves.begin(), moves.end(), 0);
-  if(randomize_order)
+  if(randomize_check_order)
 	std::random_shuffle(moves.begin(), moves.end());
   for (int move : moves){
 	if(this->beta <= this->alpha) {	  

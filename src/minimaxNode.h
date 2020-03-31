@@ -19,7 +19,7 @@ public:
   long beta;
 private:
   const static long INF = LONG_MAX;
-  const static bool randomize_moves = false;
+  const static bool randomize_check_order = false;
   static Tile flipTile(Tile targ);
   bool updateValue(long value);
   static int max_depth;
