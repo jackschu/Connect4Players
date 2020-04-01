@@ -10,8 +10,8 @@ int handleGameOver(const Board &b);
 int main() {
   Board b;
   Player * pb = new HumanPlayer(Tile::BLACK);
-  Player * pw = new PetersPlayer(Tile::WHITE);
-  //Player * pw = new ConsecutivePlayer(Tile::WHITE);
+  //Player * pw = new PetersPlayer(Tile::WHITE);
+  Player * pw = new ConsecutivePlayer(Tile::WHITE);
   while (handleGameOver(b) < 0) {
     b.print();
 	std::cout  << std::endl;
