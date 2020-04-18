@@ -75,13 +75,19 @@ bool Board::checkWin(Tile player) const {
 }
 
 int Board::countConsecutive(Tile player) const {
+  Tile other = Tile::WHITE;
+  if(player == Tile::WHITE)
+	other = Tile::BLACK;
   auto status = this->toBitset(player);
+  auto other_status = this->toBitset(other);
   int out = 0;
   for (const auto &consec : this->getConsecutiveList()) {
     int opt = 0;
     for (int ind : consec) {
-      if (status[ind])
-        opt++;
+      if (status[ind] || !other_status[ind]){
+		if(other_status[ind])
+		  opt++;
+	  }
       else {
         out = std::max(opt, out);
         opt = 0;
