@@ -5,6 +5,7 @@
 #include <iostream>
 #include <unordered_set>
 #include <vector>
+#include <cassert>
 
 class Board {
 public:
@@ -13,6 +14,7 @@ public:
   const static int BOARD_HEIGHT = 6;
 
   Board();
+  Board(const std::vector<int> &board);
   void print() const;
   static void printBitset(std::bitset<BOARD_HEIGHT * BOARD_WIDTH> bs);
   bool checkWin(Tile player) const;

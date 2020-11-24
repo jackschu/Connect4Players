@@ -1,6 +1,6 @@
 #pragma once
 #include "player.h"
-#include "minimaxNode.h"
+#include "../minimaxNode.h"
 
 class ConsecutivePlayer: public Player {
  public:

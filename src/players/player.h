@@ -1,6 +1,6 @@
 #pragma once
-#include "board.h"
-#include "tile.h"
+#include "../board.h"
+#include "../tile.h"
 class Player {
 public:
   Player(Tile player);

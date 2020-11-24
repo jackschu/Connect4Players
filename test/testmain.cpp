@@ -1,8 +1,8 @@
 #define CATCH_CONFIG_MAIN
-#include "board.h"
-#include "minimaxNode.h"
-#include "catch.hpp"
-#include "tile.h"
+#include "../src/board.h"
+#include "../src/minimaxNode.h"
+#include "../thirdparty/catch2/include/catch.hpp"
+#include "../src/tile.h"
 
 TEST_CASE("diagonal win", "[win check]") {
 

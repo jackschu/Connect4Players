@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>EM Test</title>
+    <script type="text/javascript" src="a.js"></script>
+</head>
+<body>
+Check browser console.
+
+<script type="text/javascript">
+Module.onRuntimeInitialized = _ => {
+  console.log(Module.getMove("101100000000000000000000000000000000000000"));
+};
+</script>
+</body>
+</html>

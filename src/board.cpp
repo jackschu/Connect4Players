@@ -1,6 +1,20 @@
 #include "board.h"
 
 Board::Board() {}
+Board::Board(const std::vector<int> &input) {
+  assert(input.size()==this->BOARD_HEIGHT*this->BOARD_WIDTH);
+  for(int i = 0; i < (int)input.size(); i++){
+	Tile tile;
+	if(input[i] == 0)
+	  continue;
+	else if (input[i] == 1)
+	  tile = Tile::WHITE;
+	else
+	  tile = Tile::BLACK;
+	int col = i % this->BOARD_WIDTH;
+	this->makeMove(col, tile, true);
+  }
+}
 char ** Board::toChar() const {
   char ** out = new char * [Board::BOARD_HEIGHT];
   for (int i = 0; i < Board::BOARD_HEIGHT; i++) {

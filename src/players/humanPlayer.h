@@ -2,7 +2,6 @@
 #include <iostream>
 #include <string>
 #include "player.h"
-#include "minimaxNode.h"
 
 class HumanPlayer: public Player {
  public:

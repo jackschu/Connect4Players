@@ -1,8 +1,8 @@
-#include "board.h"
-#include "players/consecutivePlayer.h"
-#include "players/humanPlayer.h"
-#include "players/petersPlayer.h"
-#include "tile.h"
+#include "../src/board.h"
+#include "../src/players/consecutivePlayer.h"
+#include "../src/players/humanPlayer.h"
+#include "../src/players/petersPlayer.h"
+#include "../src/tile.h"
 #include <cstdlib>
 #include <iostream>
 

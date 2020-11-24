@@ -1,6 +1,7 @@
 #include "minimaxNode.h"
 
 int MinimaxNode::max_depth = 13;
+int MinimaxNode::traversed = 0;
 
 MinimaxNode::MinimaxNode(bool is_maximizer, Board &board, Tile player,
                          int depth, long alpha, long beta)
@@ -9,6 +10,7 @@ MinimaxNode::MinimaxNode(bool is_maximizer, Board &board, Tile player,
 }
 
 long MinimaxNode::traverse() {
+  MinimaxNode::traversed++;
   if(board.checkWin(root_player)){
 	updateValue(INF);
 	return this->value;
