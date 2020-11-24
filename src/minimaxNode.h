@@ -20,6 +20,7 @@ public:
   long beta;
   // after this time, all traversals act as end-nodes
   time_t soft_deadline;
+  static int traversed;
 private:
 
   const static long INF = LONG_MAX;

@@ -1,9 +1,12 @@
 #include "board.h"
+#include "players/consecutivePlayer.h"
 #include "minimaxNode.h"
 #include "tile.h"
 #include <iostream>
 int main() {
   Board b = Board();
+  Player * pw = new ConsecutivePlayer(Tile::BLACK);
+  pw->getMove(b);
   b.makeMove(3, Tile::BLACK);
   b.makeMove(3, Tile::WHITE);
   b.makeMove(3, Tile::WHITE);
