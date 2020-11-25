@@ -85,7 +85,7 @@ int Board::countConsecutive(Tile player) const {
     int opt = 0;
     for (int ind : consec) {
       if (status[ind] || !other_status[ind]){
-		if(other_status[ind])
+		if(status[ind])
 		  opt++;
 	  }
       else {

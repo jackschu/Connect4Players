@@ -12,11 +12,11 @@ MinimaxNode::MinimaxNode(bool is_maximizer, Board &board, Tile player,
 long MinimaxNode::traverse() {
   MinimaxNode::traversed++;
   if(board.checkWin(root_player)){
-	updateValue(INF);
+	updateValue(INF - depth);
 	return this->value;
   }
   if(board.checkWin(MinimaxNode::flipTile(root_player))){
-	updateValue(-INF);
+	updateValue(-INF + depth);
 	return this->value;
   }
   if(board.checkTie()){
