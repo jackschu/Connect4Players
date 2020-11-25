@@ -7,6 +7,8 @@
 #include <numeric>
 #include <cstdlib>
 #include <vector>
+#include <random>
+#include <chrono>
 class MinimaxNode {
 
 public:
@@ -23,7 +25,7 @@ public:
   static int traversed;
 private:
 
-  const static long INF = LONG_MAX;
+  const static long INF = 10000;
   const static bool randomize_check_order = true;
   static Tile flipTile(Tile targ);
   bool updateValue(long value);

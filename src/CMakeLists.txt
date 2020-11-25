@@ -9,7 +9,7 @@ set_target_properties(connect4_lib PROPERTIES LINKER_LANGUAGE CXX)
 
 set_property(TARGET connect4_lib PROPERTY CXX_STANDARD 17)
 target_include_directories(connect4_lib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
-target_compile_options(connect4_lib PRIVATE -Werror -Wall -Wextra)
+target_compile_options(connect4_lib PRIVATE -Werror -Wall -Wextra -O3)
 
 # The main program
 SET(CMAKE_EXECUTABLE_SUFFIX ".out")

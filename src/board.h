@@ -6,6 +6,7 @@
 #include <unordered_set>
 #include <vector>
 #include <cassert>
+#include <queue>
 
 class Board {
 public:

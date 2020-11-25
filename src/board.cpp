@@ -20,7 +20,7 @@ char ** Board::toChar() const {
   for (int i = 0; i < Board::BOARD_HEIGHT; i++) {
 	out[Board::BOARD_HEIGHT-1-i] = new char [Board::BOARD_WIDTH];
     for (int j = 0; j < this->BOARD_WIDTH; j++) {
-	  char val;
+	  char val = ' ';
       switch (this->board[i * BOARD_WIDTH + j]) {
       case Tile::BLACK:
 		val = 'X';
@@ -96,19 +96,25 @@ int Board::countConsecutive(Tile player) const {
   auto other_status = this->toBitset(other);
   int out = 0;
   for (const auto &consec : this->getConsecutiveList()) {
-    int opt = 0;
-    for (int ind : consec) {
-      if (status[ind] || !other_status[ind]){
-		if(other_status[ind])
-		  opt++;
+	int n = consec.size();
+	if(n < WIN_LEN) continue;
+	int other_in = 0;
+	int us_in = 0;
+
+	for(int i = 0; i < n; i++){
+	  int idx = consec[i];
+	  us_in += status[idx];
+	  other_in += other_status[idx];
+	  if(i >= WIN_LEN){
+		int remove_idx = consec[i-WIN_LEN];
+		us_in -= status[remove_idx];
+		other_in -= other_status[remove_idx];
 	  }
-      else {
-        out = std::max(opt, out);
-        opt = 0;
-      }
-    }
-    out = std::max(out, opt);
+	  if(i >= WIN_LEN - 1 && other_in == 0)
+		out = std::max(out, us_in);
+	}
   }
+
   return out;
 }
 

@@ -8,15 +8,18 @@
 
 int handleGameOver(const Board &b);
 int main() {
+  bool human_first = false;
+  auto human_tile = human_first ? Tile::BLACK :Tile::WHITE;
+  auto computer_tile = !human_first ? Tile::BLACK :Tile::WHITE;
   Board b;
-  Player * pb = new HumanPlayer(Tile::BLACK);
+  Player * ph = new HumanPlayer(human_tile);
   //Player * pw = new PetersPlayer(Tile::WHITE);
-  Player * pw = new ConsecutivePlayer(Tile::WHITE);
+  Player * pc = new ConsecutivePlayer(computer_tile);
   while (handleGameOver(b) < 0) {
     b.print();
 	std::cout  << std::endl;
 
-	if(!b.makeMove(pb->getMove(b), Tile::BLACK))
+	if(!b.makeMove((human_first ? ph: pc)->getMove(b), human_first ? human_tile : computer_tile))
 	  printf("bad move black\n");
 
 	if(handleGameOver(b) >= 0)
@@ -24,7 +27,7 @@ int main() {
 	
 	b.print();
 	std::cout  << std::endl;
-    if(!b.makeMove(pw->getMove(b), Tile::WHITE)){
+	if(!b.makeMove((!human_first ? ph: pc)->getMove(b), !human_first ? human_tile : computer_tile)){
 	  printf("bad move white\n");
     }
   }
