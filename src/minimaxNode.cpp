@@ -31,8 +31,10 @@ long MinimaxNode::traverse() {
   }
   std::vector<int> moves(Board::BOARD_WIDTH);
   std::iota(moves.begin(), moves.end(), 0);
-  if(randomize_check_order)
-	std::random_shuffle(moves.begin(), moves.end());
+  if(randomize_check_order){
+	unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+	shuffle (moves.begin(), moves.end(), std::default_random_engine(seed));
+  }
   for (int move : moves){
 	if(this->beta <= this->alpha) {	  
 	  if(is_maximizer)

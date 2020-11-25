@@ -7,6 +7,8 @@
 #include <numeric>
 #include <cstdlib>
 #include <vector>
+#include <random>
+#include <chrono>
 class MinimaxNode {
 
 public:
