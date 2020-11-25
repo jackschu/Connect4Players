@@ -2,6 +2,7 @@
 #include "player.h"
 
 #include <stdio.h>
+#include <iostream>
 #include <math.h>
 #include <string.h>
 #include <stdlib.h>

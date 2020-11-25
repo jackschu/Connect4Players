@@ -216,7 +216,7 @@ void peters::playerMove(char **board, int playerC, int j, int rows, int columns,
 		if (board[0][j] != ' ' || j >= columns || j < 0){  //Checks to make sure number is a valid move
 		  printf("\nInvalid Move");
 		  printf("\nChoose a new move: ");
-		  scanf("%d", &j);
+		  std::cin >> j;
 		  j = j -1;
 		  i = rows;
 		}

@@ -5,6 +5,7 @@
 #include <iostream>
 #include <unordered_set>
 #include <vector>
+#include <queue>
 
 class Board {
 public:
