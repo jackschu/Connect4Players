@@ -14,7 +14,7 @@ file(GLOB_RECURSE SOURCES "src/*.cpp")
 add_executable(a
 	${SOURCES}
 )
-#set_target_properties(a PROPERTIES LINK_FLAGS "--bind -s WASM=0 -s EXPORT_ES6=1 -s USE_ES6_IMPORT_META=0 -s MODULARIZE=1")
-set_target_properties(a PROPERTIES LINK_FLAGS "--bind -s WASM=1")
+set_target_properties(a PROPERTIES LINK_FLAGS "--bind -s WASM=0 -s EXPORT_ES6=1 -s USE_ES6_IMPORT_META=0 -s MODULARIZE=1")
+#set_target_properties(a PROPERTIES LINK_FLAGS "-O3 --bind -s WASM=0 --closure 1")
 
 

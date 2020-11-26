@@ -8,30 +8,30 @@
 #include <emscripten/bind.h>
 
 using namespace emscripten;
-int main() {
-  Board b = Board();
-  Player * pb = new ConsecutivePlayer(Tile::WHITE);
-// 5: -------
-// 4: -------
-// 3: ---O-X-
-// 2: --XX-O-
-// 1: -OXX-O-
-// 0: OXOXXO-
+// int main() {
+//   Board b = Board();
+//   Player * pb = new ConsecutivePlayer(Tile::WHITE);
+// // 5: -------
+// // 4: -------
+// // 3: ---O-X-
+// // 2: --XX-O-
+// // 1: -OXX-O-
+// // 0: OXOXXO-
 
-	b.makeMove(0, Tile::WHITE); b.makeMove(1, Tile::BLACK); b.makeMove(2, Tile::WHITE); b.makeMove(3, Tile::BLACK); b.makeMove(4, Tile::BLACK); b.makeMove(5, Tile::WHITE);
-  b.makeMove(1, Tile::WHITE); b.makeMove(2, Tile::BLACK); b.makeMove(3, Tile::BLACK); b.makeMove(5, Tile::WHITE);
-  b.makeMove(2, Tile::BLACK); b.makeMove(3, Tile::BLACK); b.makeMove(5, Tile::WHITE);
-  b.makeMove(3, Tile::WHITE); b.makeMove(5, Tile::BLACK);
+// 	b.makeMove(0, Tile::WHITE); b.makeMove(1, Tile::BLACK); b.makeMove(2, Tile::WHITE); b.makeMove(3, Tile::BLACK); b.makeMove(4, Tile::BLACK); b.makeMove(5, Tile::WHITE);
+//   b.makeMove(1, Tile::WHITE); b.makeMove(2, Tile::BLACK); b.makeMove(3, Tile::BLACK); b.makeMove(5, Tile::WHITE);
+//   b.makeMove(2, Tile::BLACK); b.makeMove(3, Tile::BLACK); b.makeMove(5, Tile::WHITE);
+//   b.makeMove(3, Tile::WHITE); b.makeMove(5, Tile::BLACK);
 	
-  b.print();
-  int move = pb->getMove(b);
-  std::cout << move << std::endl;
-  b.makeMove(move, Tile::WHITE);
-  b.print();
-  std::cout << b.checkWin(Tile::WHITE) << std::endl;
-  std::cout << b.countConsecutive(Tile::WHITE) << std::endl;
+//   b.print();
+//   int move = pb->getMove(b);
+//   std::cout << move << std::endl;
+//   b.makeMove(move, Tile::WHITE);
+//   b.print();
+//   std::cout << b.checkWin(Tile::WHITE) << std::endl;
+//   std::cout << b.countConsecutive(Tile::WHITE) << std::endl;
 
-}
+// }
 
 int getMove(std::string input) {
   std::vector<int> board;
@@ -42,13 +42,29 @@ int getMove(std::string input) {
   b.print();
   Player * pw = new ConsecutivePlayer(Tile::BLACK);
   int out = pw->getMove(b);
-  b.makeMove(pw->getMove(b), Tile::BLACK);
+  b.makeMove(out, Tile::BLACK);
   b.print();
   return out;
 }
 
+int getWinner(std::string input) {
+  std::vector<int> board;
+  for (int i = 0; i < (int)input.size(); ++i)
+    board.push_back(input[i] - '0');
+  Board b = Board(board);
+  if (b.checkTie()) {
+	return 0;
+  } else if (b.checkWin(Tile::WHITE)) {
+	return 1;
+  } else if (b.checkWin(Tile::BLACK)) {
+	return 2;
+  }
+  return -1;
+}
+
 EMSCRIPTEN_BINDINGS(my_module) {
     function("getMove", &getMove);
+	function("getWinner", &getWinner);
 }
 
 
